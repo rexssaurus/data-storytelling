@@ -4,7 +4,7 @@ Sitio de data storytelling sobre la compensación estatal estimada por la exenci
 
 ## Ver el sitio
 
-[Abrir la visualización interactiva](https://treinta-comunas.max-rex.chatgpt.site)
+[Abrir la visualización interactiva](https://rexssaurus.github.io/data-storytelling/)
 
 Incluye:
 
@@ -23,6 +23,7 @@ npm run dev
 
 ```bash
 npm run build
+npm run build:github
 ```
 
 Los montos corresponden a una simulación publicada por OPES a partir de datos del Ministerio de Hacienda obtenidos por Transparencia. No representan una asignación definitiva ni el ingreso total de cada municipio.
