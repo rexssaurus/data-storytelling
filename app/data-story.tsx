@@ -55,10 +55,29 @@ const segments: Segment[] = [
 ];
 
 const lasCondes = 13062;
+const sanRamonBudget = 27856.833;
+const lasCondesShareOfSanRamonBudget = (lasCondes / sanRamonBudget) * 100;
 const totalThirty = 11520;
 const totalThirtyOne = 14455;
 const chartMax = 15000;
 const number = new Intl.NumberFormat('es-CL');
+
+type BudgetMetric = 'total' | 'perCapita';
+
+const municipalBudgets = [
+  {
+    name: 'San Ramón',
+    total: 27856.833,
+    population: 76002,
+    perCapita: 366528,
+  },
+  {
+    name: 'Las Condes',
+    total: 515474.435,
+    population: 296134,
+    perCapita: 1740680,
+  },
+];
 
 type CommuneProperties = {
   COMUNA: string;
@@ -118,6 +137,159 @@ const tone = (value: number) => {
   return 5;
 };
 
+function BudgetComparison() {
+  const [metric, setMetric] = useState<BudgetMetric>('total');
+  const maximum = Math.max(...municipalBudgets.map((commune) => commune[metric]));
+  const isTotal = metric === 'total';
+
+  return (
+    <section className="story-section budget-section" aria-labelledby="budget-title">
+      <div className="section-number" aria-hidden="true">01</div>
+      <div className="section-copy">
+        <p className="eyebrow">La desigualdad de base</p>
+        <h2 id="budget-title">Las Condes dispone de 18,5 veces el presupuesto de San Ramón</h2>
+        <p>
+          Antes de la reforma, sus recursos municipales ya están separados por una
+          brecha enorme. Y esa distancia sigue siendo visible al considerar el tamaño
+          de sus poblaciones.
+        </p>
+      </div>
+
+      <div className="budget-visual">
+        <div className="metric-switch" aria-label="Cambiar medida del presupuesto">
+          <button
+            type="button"
+            className={isTotal ? 'active' : ''}
+            aria-pressed={isTotal}
+            onClick={() => setMetric('total')}
+          >
+            Presupuesto total
+          </button>
+          <button
+            type="button"
+            className={!isTotal ? 'active' : ''}
+            aria-pressed={!isTotal}
+            onClick={() => setMetric('perCapita')}
+          >
+            Por habitante
+          </button>
+        </div>
+
+        <p className="budget-context">
+          {isTotal
+            ? 'Presupuesto municipal vigente 2025 · millones de pesos'
+            : 'Presupuesto vigente 2025 ÷ población censada en 2024 · pesos por habitante'}
+        </p>
+
+        <div className="budget-bars" aria-live="polite">
+          {municipalBudgets.map((commune) => {
+            const value = commune[metric];
+            const width = Math.max(2, (value / maximum) * 100);
+            const formatted = isTotal
+              ? `$${number.format(Math.round(value))}M`
+              : `$${number.format(Math.round(value))}`;
+
+            return (
+              <div className={`budget-row ${commune.name === 'Las Condes' ? 'high' : 'low'}`} key={commune.name}>
+                <div className="budget-row-heading">
+                  <span>{commune.name}</span>
+                  <strong>{formatted}</strong>
+                </div>
+                <div className="budget-track">
+                  <div
+                    className="budget-fill"
+                    style={{ width: `${width}%` }}
+                    role="img"
+                    aria-label={`${commune.name}: ${formatted}${isTotal ? ' de presupuesto vigente' : ' por habitante'}`}
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="budget-ratio">
+          <strong>{isTotal ? '18,5×' : '4,7×'}</strong>
+          <p>
+            {isTotal
+              ? 'Las Condes dispone de 18,5 veces el presupuesto municipal de San Ramón.'
+              : 'Incluso por habitante, Las Condes dispone de 4,7 veces más presupuesto.'}
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ReformBudgetComparison() {
+  return (
+    <>
+      <section className="turn-section" aria-labelledby="turn-title">
+        <p>La reforma no corrige esa brecha.</p>
+        <h2 id="turn-title">La reproduce en la compensación.</h2>
+        <div className="causal-chain" aria-label="Cómo la exención determina la compensación">
+          <span>Más contribuciones exentas</span>
+          <span>Más recaudación municipal que se deja de recibir</span>
+          <span>Mayor compensación del Estado</span>
+        </div>
+      </section>
+
+      <section className="story-section reform-section" aria-labelledby="reform-title">
+        <div className="section-number" aria-hidden="true">02</div>
+        <div className="section-copy">
+          <p className="eyebrow">La compensación propuesta</p>
+          <h2 id="reform-title">La reforma compensaría a Las Condes con casi medio presupuesto de San Ramón</h2>
+          <p>
+            La compensación estimada para Las Condes alcanza los $13.062 millones.
+            Ese monto equivale al 47% del presupuesto municipal anual de San Ramón.
+          </p>
+        </div>
+
+        <div className="reform-visual">
+          <div className="reform-chart-heading">
+            <div>
+              <span>Presupuesto vigente de San Ramón</span>
+              <strong>$27.857M</strong>
+            </div>
+            <span className="reform-year">2025 · referencia completa</span>
+          </div>
+
+          <div className="reform-budget-bar">
+            <div
+              className="reform-compensation-fill"
+              style={{ width: `${lasCondesShareOfSanRamonBudget}%` }}
+              role="img"
+              aria-label="La compensación estimada para Las Condes equivale al 46,9 por ciento del presupuesto vigente 2025 de San Ramón"
+            >
+              <span>Compensación a Las Condes</span>
+              <strong>$13.062M</strong>
+            </div>
+            <span className="reform-remainder">Presupuesto restante de referencia</span>
+          </div>
+
+          <div className="reform-impact">
+            <strong>47%</strong>
+            <p>de todo el presupuesto municipal anual de San Ramón.</p>
+          </div>
+
+          <div className="reform-san-ramon">
+            <div>
+              <span>Compensación estimada para San Ramón</span>
+              <strong>$3 millones</strong>
+            </div>
+            <p>Equivale al 0,011% de su propio presupuesto vigente.</p>
+          </div>
+
+          <p className="comparison-caveat">
+            Comparación de magnitudes: la compensación de Las Condes no forma parte
+            del presupuesto de San Ramón.
+          </p>
+        </div>
+      </section>
+    </>
+  );
+}
+
 function HorizontalComparison() {
   const [selected, setSelected] = useState<Segment>({
     name: 'Las Condes',
@@ -136,9 +308,9 @@ function HorizontalComparison() {
 
   return (
     <section className="story-section comparison-section" aria-labelledby="comparison-title">
-      <div className="section-number" aria-hidden="true">01</div>
+      <div className="section-number" aria-hidden="true">03</div>
       <div className="section-copy">
-        <p className="eyebrow">La equivalencia</p>
+        <p className="eyebrow">La desigualdad repartida</p>
         <h2 id="comparison-title">Una comuna contra treinta</h2>
         <p>
           Las Condes recibiría más compensación que las 30 comunas de menor monto
@@ -280,7 +452,7 @@ function MapStory() {
 
   return (
     <section className="story-section map-section" aria-labelledby="map-story-title">
-      <div className="section-number" aria-hidden="true">02</div>
+      <div className="section-number" aria-hidden="true">04</div>
       <div className="section-copy">
         <p className="eyebrow">El territorio</p>
         <h2 id="map-story-title">La diferencia también se ve en el mapa</h2>
@@ -443,15 +615,17 @@ export default function DataStory() {
 
       <article id="top">
         <section className="hero">
-          <p className="eyebrow">Exención de contribuciones</p>
-          <h1>Treinta comunas juntas no hacen un Las Condes</h1>
+          <p className="eyebrow">Dos comunas · dos puntos de partida</p>
+          <h1>Dos comunas separadas por una profunda desigualdad</h1>
           <p className="hero-deck">
-            La compensación estatal propuesta para cubrir la menor recaudación no se
-            repartiría de manera pareja. La simulación revela una diferencia difícil de ignorar.
+            Las Condes administra 18,5 veces el presupuesto municipal de San Ramón.
+            Incluso por habitante, dispone de 4,7 veces más recursos.
           </p>
-          <a className="scroll-link" href="#comparison-title">Ver la comparación <span aria-hidden="true">↓</span></a>
+          <a className="scroll-link" href="#budget-title">Ver la comparación <span aria-hidden="true">↓</span></a>
         </section>
 
+        <BudgetComparison />
+        <ReformBudgetComparison />
         <HorizontalComparison />
         <MapStory />
 
@@ -459,15 +633,17 @@ export default function DataStory() {
           <p className="eyebrow">Qué muestra —y qué no</p>
           <h2 id="method-title">Compensación no significa ingreso municipal</h2>
           <p>
-            Las comunas están ordenadas por el monto estimado que el Estado debería
-            compensar ante la exención. No por presupuesto, riqueza ni recaudación total.
+            El presupuesto vigente 2025 y la compensación estimada son medidas distintas.
+            El cálculo por habitante divide ese presupuesto por la población censada en
+            2024. Las cifras se comparan para dimensionar la brecha, no porque una forme
+            parte de la otra.
           </p>
         </section>
       </article>
 
       <footer>
         <p>
-          Fuente de montos:{' '}
+          Compensación estimada:{' '}
           <a
             href="https://static1.squarespace.com/static/5f31be959fceb35b50e59a1f/t/6a8092e034b78954cf0cd668/1786811106289/Compensaci%C3%B3n_Megarreforma_OPESWEB_c.pdf"
             target="_blank"
@@ -476,6 +652,26 @@ export default function DataStory() {
             OPES
           </a>, con datos del Ministerio de Hacienda obtenidos por Transparencia.
           Simulación; no corresponde a una asignación definitiva.
+        </p>
+        <p>
+          Presupuesto vigente 2025:{' '}
+          <a href="https://www.monitormunicipios.cl/comuna/san-ramon" target="_blank" rel="noreferrer">
+            San Ramón
+          </a>{' '}
+          y{' '}
+          <a href="https://www.monitormunicipios.cl/comuna/las-condes" target="_blank" rel="noreferrer">
+            Las Condes
+          </a>. Fichas basadas en SINIM · SUBDERE.
+        </p>
+        <p>
+          Población:{' '}
+          <a
+            href="https://censo2024.ine.gob.cl/wp-content/uploads/2025/03/13_PRESENTACION-R_REGIONAL-RM.pdf"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Censo 2024, INE
+          </a>. Las Condes: 296.134 habitantes; San Ramón: 76.002.
         </p>
         <p>Límites comunales: ArcGIS Feature Service, actualización 2024.</p>
       </footer>
