@@ -2,6 +2,10 @@
 
 Sitio de data storytelling sobre la compensación estatal estimada por la exención de contribuciones a mayores de 65 años en comunas del Gran Santiago.
 
+## Ver el sitio
+
+[Abrir la visualización interactiva](https://treinta-comunas.max-rex.chatgpt.site)
+
 Incluye:
 
 - una comparación horizontal entre Las Condes y las 31 comunas de menor monto acumulado;
