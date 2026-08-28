@@ -147,7 +147,10 @@ function BudgetComparison() {
       <div className="section-number" aria-hidden="true">03</div>
       <div className="section-copy">
         <p className="eyebrow">El punto de partida</p>
-        <h2 id="budget-title">Las Condes dispone de 18,5 veces el presupuesto de San Ramón</h2>
+        <h2 id="budget-title">
+          <span>Las Condes dispone de 18,5 veces</span>
+          <span>el presupuesto de San Ramón</span>
+        </h2>
         <p>
           Antes de la reforma, sus recursos municipales ya están separados por una
           brecha enorme. Y esa distancia sigue siendo visible al considerar el tamaño
@@ -455,7 +458,7 @@ function MapStory() {
       <div className="section-number" aria-hidden="true">01</div>
       <div className="section-copy">
         <p className="eyebrow">La mirada general</p>
-        <h2 id="map-story-title">El mapa muestra dónde se concentra la compensación</h2>
+        <h2 id="map-story-title">¿Dónde se concentra la compensación?</h2>
         <p>
           El celeste concentra los montos más altos. El rojo muestra las comunas
           que recibirían una fracción mínima de esa compensación.
@@ -468,7 +471,6 @@ function MapStory() {
             <h3>Compensación por menor recaudación de contribuciones</h3>
             <p>Exención a mayores de 65 años · millones de pesos</p>
           </div>
-          <span className="map-color-note"><i /> menor <b /> mayor</span>
         </div>
 
         <div className="map-stage" ref={stageRef}>
@@ -616,11 +618,14 @@ export default function DataStory() {
       <article id="top">
         <section className="hero">
           <p className="eyebrow">Reforma tributaria · Gran Santiago</p>
-          <h1>Más necesidades, menos recursos: un gobierno que aumenta la desigualdad territorial</h1>
+          <h1>
+            <span>Más necesidades, menos recursos:</span>
+            <span>un gobierno que aumenta la desigualdad territorial</span>
+          </h1>
           <p className="hero-deck">
-            La compensación estatal propuesta sigue la recaudación que cada municipio
-            dejaría de percibir. Primero aparece el patrón territorial; después, el caso
-            de San Ramón muestra hasta dónde llega la brecha.
+            El Estado compensaría a cada comuna según la recaudación que perdería con
+            la exención de contribuciones. Así, las diferencias que ya existen entre
+            territorios vuelven a aparecer en el reparto.
           </p>
           <a className="scroll-link" href="#map-story-title">Ver el mapa <span aria-hidden="true">↓</span></a>
         </section>
@@ -636,16 +641,6 @@ export default function DataStory() {
         <BudgetComparison />
         <ReformBudgetComparison />
 
-        <section className="method-section" aria-labelledby="method-title">
-          <p className="eyebrow">Qué muestra —y qué no</p>
-          <h2 id="method-title">Compensación no significa ingreso municipal</h2>
-          <p>
-            El presupuesto vigente 2025 y la compensación estimada son medidas distintas.
-            El cálculo por habitante divide ese presupuesto por la población censada en
-            2024. Las cifras se comparan para dimensionar la brecha, no porque una forme
-            parte de la otra.
-          </p>
-        </section>
       </article>
 
       <footer>
