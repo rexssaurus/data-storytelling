@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'La reforma compensaría a Las Condes con casi medio presupuesto de San Ramón',
+  title: 'Más necesidades, menos recursos: un gobierno que aumenta la desigualdad territorial',
   description:
-    'Una historia visual sobre la desigualdad presupuestaria municipal y la compensación estatal estimada por la exención de contribuciones.',
+    'Del mapa del Gran Santiago al caso de San Ramón: una historia visual sobre desigualdad territorial y compensación estatal.',
 };
 
 export default function RootLayout({

@@ -1,4 +1,4 @@
-# La reforma compensaría a Las Condes con casi medio presupuesto de San Ramón
+# Más necesidades, menos recursos
 
 Sitio de data storytelling sobre la compensación estatal estimada por la exención de contribuciones a mayores de 65 años en comunas del Gran Santiago.
 
@@ -8,6 +8,7 @@ Sitio de data storytelling sobre la compensación estatal estimada por la exenci
 
 Incluye:
 
+- un recorrido narrativo desde el mapa general, pasando por la comparación de 30 comunas, hasta el caso de San Ramón;
 - una comparación interactiva del presupuesto total y por habitante de San Ramón y Las Condes;
 - una equivalencia visual entre la compensación de Las Condes y el presupuesto anual de San Ramón;
 - una comparación horizontal entre Las Condes y las 31 comunas de menor monto acumulado;

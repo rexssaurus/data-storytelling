@@ -144,9 +144,9 @@ function BudgetComparison() {
 
   return (
     <section className="story-section budget-section" aria-labelledby="budget-title">
-      <div className="section-number" aria-hidden="true">01</div>
+      <div className="section-number" aria-hidden="true">03</div>
       <div className="section-copy">
-        <p className="eyebrow">La desigualdad de base</p>
+        <p className="eyebrow">El punto de partida</p>
         <h2 id="budget-title">Las Condes dispone de 18,5 veces el presupuesto de San Ramón</h2>
         <p>
           Antes de la reforma, sus recursos municipales ya están separados por una
@@ -235,7 +235,7 @@ function ReformBudgetComparison() {
       </section>
 
       <section className="story-section reform-section" aria-labelledby="reform-title">
-        <div className="section-number" aria-hidden="true">02</div>
+        <div className="section-number" aria-hidden="true">04</div>
         <div className="section-copy">
           <p className="eyebrow">La compensación propuesta</p>
           <h2 id="reform-title">La reforma compensaría a Las Condes con casi medio presupuesto de San Ramón</h2>
@@ -308,10 +308,10 @@ function HorizontalComparison() {
 
   return (
     <section className="story-section comparison-section" aria-labelledby="comparison-title">
-      <div className="section-number" aria-hidden="true">03</div>
+      <div className="section-number" aria-hidden="true">02</div>
       <div className="section-copy">
-        <p className="eyebrow">La desigualdad repartida</p>
-        <h2 id="comparison-title">Una comuna contra treinta</h2>
+        <p className="eyebrow">De la geografía a la magnitud</p>
+        <h2 id="comparison-title">Treinta comunas juntas no hacen un Las Condes</h2>
         <p>
           Las Condes recibiría más compensación que las 30 comunas de menor monto
           juntas. Recién al sumar una comuna número 31 se supera su cifra.
@@ -452,10 +452,10 @@ function MapStory() {
 
   return (
     <section className="story-section map-section" aria-labelledby="map-story-title">
-      <div className="section-number" aria-hidden="true">04</div>
+      <div className="section-number" aria-hidden="true">01</div>
       <div className="section-copy">
-        <p className="eyebrow">El territorio</p>
-        <h2 id="map-story-title">La diferencia también se ve en el mapa</h2>
+        <p className="eyebrow">La mirada general</p>
+        <h2 id="map-story-title">El mapa muestra dónde se concentra la compensación</h2>
         <p>
           El celeste concentra los montos más altos. El rojo muestra las comunas
           que recibirían una fracción mínima de esa compensación.
@@ -610,24 +610,31 @@ export default function DataStory() {
           <span>DATA</span>
           <span>STORY</span>
         </a>
-        <p>Reforma tributaria · Gran Santiago</p>
+        <p>Más necesidades · menos recursos</p>
       </header>
 
       <article id="top">
         <section className="hero">
-          <p className="eyebrow">Dos comunas · dos puntos de partida</p>
-          <h1>Dos comunas separadas por una profunda desigualdad</h1>
+          <p className="eyebrow">Reforma tributaria · Gran Santiago</p>
+          <h1>Más necesidades, menos recursos: un gobierno que aumenta la desigualdad territorial</h1>
           <p className="hero-deck">
-            Las Condes administra 18,5 veces el presupuesto municipal de San Ramón.
-            Incluso por habitante, dispone de 4,7 veces más recursos.
+            La compensación estatal propuesta sigue la recaudación que cada municipio
+            dejaría de percibir. Primero aparece el patrón territorial; después, el caso
+            de San Ramón muestra hasta dónde llega la brecha.
           </p>
-          <a className="scroll-link" href="#budget-title">Ver la comparación <span aria-hidden="true">↓</span></a>
+          <a className="scroll-link" href="#map-story-title">Ver el mapa <span aria-hidden="true">↓</span></a>
+        </section>
+
+        <MapStory />
+        <HorizontalComparison />
+
+        <section className="case-intro" aria-labelledby="case-title">
+          <p>Del territorio a una comuna concreta</p>
+          <h2 id="case-title">El caso de San Ramón</h2>
         </section>
 
         <BudgetComparison />
         <ReformBudgetComparison />
-        <HorizontalComparison />
-        <MapStory />
 
         <section className="method-section" aria-labelledby="method-title">
           <p className="eyebrow">Qué muestra —y qué no</p>

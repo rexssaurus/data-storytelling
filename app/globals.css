@@ -101,7 +101,7 @@ article {
 .hero h1 {
   max-width: 1080px;
   margin: 0;
-  font-size: clamp(3rem, 8.3vw, 8.4rem);
+  font-size: clamp(3rem, 7vw, 7.4rem);
   font-weight: 680;
   line-height: 0.91;
   letter-spacing: -0.075em;
@@ -288,6 +288,38 @@ article {
   font-size: clamp(1rem, 1.8vw, 1.3rem);
   font-weight: 690;
   line-height: 1.25;
+}
+
+.case-intro {
+  min-height: 68svh;
+  display: grid;
+  align-content: center;
+  padding: clamp(90px, 14vw, 190px) clamp(20px, 12vw, 180px);
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 calc(25% - 1px),
+      rgb(21 21 21 / 12%) calc(25% - 1px) 25%
+    ),
+    var(--red);
+  color: var(--ink);
+}
+
+.case-intro p {
+  margin: 0 0 18px;
+  font-size: clamp(0.85rem, 1.4vw, 1.1rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.case-intro h2 {
+  max-width: 1100px;
+  margin: 0;
+  font-size: clamp(4.5rem, 12vw, 12rem);
+  line-height: 0.82;
+  letter-spacing: -0.085em;
+  text-wrap: balance;
 }
 
 .turn-section {
@@ -1029,7 +1061,7 @@ footer a {
   }
 
   .hero h1 {
-    font-size: clamp(3.2rem, 16vw, 5.4rem);
+    font-size: clamp(3rem, 13vw, 4.8rem);
   }
 
   .metric-switch {
