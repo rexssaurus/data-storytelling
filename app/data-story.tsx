@@ -234,6 +234,7 @@ function HorizontalComparison() {
 
 function MapStory() {
   const stageRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
   const [width, setWidth] = useState(720);
   const [selectedCode, setSelectedCode] = useState('13131');
 
@@ -243,6 +244,7 @@ function MapStory() {
 
     const update = () => setWidth(Math.max(300, Math.round(stage.clientWidth)));
     update();
+    setMounted(true);
 
     const observer = new ResizeObserver(update);
     observer.observe(stage);
@@ -298,7 +300,14 @@ function MapStory() {
         </div>
 
         <div className="map-stage" ref={stageRef}>
-          <svg
+          {!mounted ? (
+            <svg
+              className="map-placeholder"
+              aria-hidden="true"
+              viewBox={`0 0 ${width} ${height}`}
+            />
+          ) : (
+            <svg
             role="img"
             aria-labelledby="map-svg-title map-svg-desc"
             viewBox={`0 0 ${width} ${height}`}
@@ -383,7 +392,8 @@ function MapStory() {
                   })}
               </g>
             )}
-          </svg>
+            </svg>
+          )}
         </div>
 
         <div className="critical-cases" aria-label="Comunas con menor compensación">
